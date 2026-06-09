@@ -69,6 +69,11 @@
 .about-story {
   background: var(--light);
 }
+.section-desc {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.8;
+}
 
 .about-grid {
   display: grid;
@@ -149,6 +154,45 @@
 
 .team-section {
   background: var(--dark-2);
+}
+.wedding-film-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0d0b0a;
+}
+
+.wedding-film-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wedding-film-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.7) 100%);
+  z-index: 1;
+}
+
+.wedding-film-content {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: clamp(2rem, 5vw, 4rem);
+  max-width: 900px;
+}
+
+.wedding-film-content .section-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.wedding-film-content .section-desc {
+  max-width: 720px;
+  color: var(--grey-light);
 }
 
 .team-grid {

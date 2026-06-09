@@ -26,7 +26,7 @@
         <li><a href="${root}packages/" class="nav-link">Packages</a></li>
         <li><a href="${root}contact/" class="nav-link">Contact</a></li>
       </ul>
-      <a href="${root}contact/" class="btn-book">Book Now</a>
+      <a href="${root}book-now/" class="btn-book">Book Now</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
