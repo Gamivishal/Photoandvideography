@@ -398,6 +398,36 @@ ul {
 .nav-dropdown {
   position: absolute;
   top: calc(100% + 1.2rem);
+
+/* Footer social icons */
+.footer-social {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social__item {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: var(--light);
+  color: #222;
+  border-radius: 8px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.footer-social__item svg { width: 20px; height: 20px; }
+
+.footer-social__item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+.footer-social__item--camera { color: var(--gold-dark); background: var(--light); }
+.footer-social__item--instagram { color: #fff; background: radial-gradient(circle at 30% 10%, #feda75 0%, #f58529 25%, #dd2a7b 50%, #962fbf 75%, #4f5bd5 100%); }
+.footer-social__item--twitter { color: #fff; background: linear-gradient(135deg,#1da1f2,#0d95e8); }
+
+.footer-social__item--instagram svg, .footer-social__item--twitter svg { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2)); }
   left: 0;
   background: rgba(17, 17, 17, 0.98);
   backdrop-filter: blur(20px);
@@ -1516,6 +1546,32 @@ ul {
   color: var(--gold);
 }
 
+/* Platform specific colors */
+.social-link.instagram {
+  color: #E1306C;
+  border-color: #E1306C;
+}
+.social-link.instagram:hover {
+  border-color: #E1306C;
+  color: #E1306C;
+}
+.social-link.facebook {
+  color: #1877F2;
+  border-color: #1877F2;
+}
+.social-link.facebook:hover {
+  border-color: #1877F2;
+  color: #1877F2;
+}
+.social-link.twitter {
+  color: #1DA1F2;
+  border-color: #1DA1F2;
+}
+.social-link.twitter:hover {
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
 .footer-col h4 {
   font-size: 0.7rem;
   letter-spacing: 0.3em;
@@ -1543,6 +1599,7 @@ ul {
   font-size: 0.85rem;
   line-height: 1.6;
   margin-bottom: 0.75rem;
+  white-space: nowrap;
 }
 
 .footer-contact li a {
@@ -1552,6 +1609,10 @@ ul {
 
 .footer-contact li a:hover {
   color: var(--gold);
+}
+
+.footer-contact {
+  text-align: justify;
 }
 
 .footer-bottom {
