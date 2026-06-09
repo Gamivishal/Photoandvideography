@@ -212,11 +212,12 @@ ul {
   z-index: 9000;
   background: var(--green-wa);
   color: #fff;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 50px;
+  justify-content: center;
+  gap: 0;
+  padding: 0.85rem;
+  border-radius: 50%;
   font-size: 0.75rem;
   font-family: var(--font-sans);
   font-weight: 600;
@@ -224,6 +225,10 @@ ul {
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   transition: var(--transition);
   animation: waPulse 3s ease infinite;
+}
+
+.whatsapp-float span {
+  display: none;
 }
 
 .whatsapp-float:hover {
