@@ -1,4 +1,8 @@
 (function () {
+  const pathDepth = window.location.pathname.split('/').filter(p => p.length > 0 && !p.endsWith('.html')).length;
+  const isSubPage = pathDepth > 0;
+  const root = isSubPage ? '../' : './';
+
   const footerHTML = `
 <footer class="footer" id="footer">
   <div class="container">
@@ -22,19 +26,19 @@
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./about/">About</a></li>
-          <li><a href="./portfolio/">Portfolio</a></li>
-          <li><a href="./packages/">Packages</a></li>
+          <li><a href="${root}">Home</a></li>
+          <li><a href="${root}about/">About</a></li>
+          <li><a href="${root}portfolio/">Portfolio</a></li>
+          <li><a href="${root}packages/">Packages</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="./wedding-photography/">Wedding</a></li>
-          <li><a href="./pre-wedding/">Pre-Wedding</a></li>
-          <li><a href="./corporate-events/">Corporate</a></li>
-          <li><a href="./drone-photography/">Drone</a></li>
+          <li><a href="${root}wedding-photography/">Wedding</a></li>
+          <li><a href="${root}pre-wedding/">Pre-Wedding</a></li>
+          <li><a href="${root}corporate-events/">Corporate</a></li>
+          <li><a href="${root}drone-photography/">Drone</a></li>
         </ul>
       </div>
       <div class="footer-col">

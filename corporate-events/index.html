@@ -63,67 +63,120 @@
 
   <section class="page-hero" id="pageHero">
     <div class="page-hero-bg"
-      style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80')"></div>
+      style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');">
+    </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-      <span class="section-label">B2B Visual Solutions</span>
+      <span class="section-label">Professional Events</span>
       <h1>Corporate &amp; Events</h1>
       <p class="breadcrumb"><a href="../">Home</a> / Corporate &amp; Events</p>
     </div>
   </section>
 
-  <!-- INDUSTRIES -->
-  <section class="section-pad dark-section" id="industries">
-    <div class="container">
-      <div class="section-header center">
-        <span class="section-label light">Who We Serve</span>
-        <h2 class="section-title light">Industries We Cover</h2>
-        <p class="section-desc light">Ahmedabad is a hub of industry — and we've worked with them all</p>
-      </div>
-      <div class="industries-grid">
-        <div class="industry-card reveal-up" id="ind1">
-          <div class="industry-icon">💊</div>
-          <h4>Pharmaceuticals</h4>
-          <p>Product launches, annual meets, R&amp;D documentation for pharma giants in Gujarat.</p>
-        </div>
-        <div class="industry-card reveal-up delay-1" id="ind2">
-          <div class="industry-icon">🏭</div>
-          <h4>Manufacturing</h4>
-          <p>Factory walkthroughs, process documentation, and industrial photography.</p>
-        </div>
-        <div class="industry-card reveal-up delay-2" id="ind3">
-          <div class="industry-icon">💻</div>
-          <h4>IT &amp; Tech</h4>
-          <p>Corporate headshots, team photos, office shoots, and product demo videos.</p>
-        </div>
-        <div class="industry-card reveal-up delay-3" id="ind4">
-          <div class="industry-icon">🛍️</div>
-          <h4>Retail &amp; FMCG</h4>
-          <p>Product launches, BTL events, brand activations, and promotional coverage.</p>
-        </div>
-        <div class="industry-card reveal-up" id="ind5">
-          <div class="industry-icon">🎪</div>
-          <h4>Events &amp; Exhibitions</h4>
-          <p>Trade fairs, Vibrant Gujarat, Garba/Navratri, conferences, and gala dinners.</p>
-        </div>
-        <div class="industry-card reveal-up delay-1" id="ind6">
-          <div class="industry-icon">🏗️</div>
-          <h4>Real Estate</h4>
-          <p>Architectural photography, drone aerials, and project documentation.</p>
-        </div>
-        <div class="industry-card reveal-up delay-2" id="ind7">
-          <div class="industry-icon">🎓</div>
-          <h4>Education</h4>
-          <p>Convocations, campus events, faculty photos, and institutional branding.</p>
-        </div>
-        <div class="industry-card reveal-up delay-3" id="ind8">
-          <div class="industry-icon">🏨</div>
-          <h4>Hospitality</h4>
-          <p>Hotel photography, food styling, banquet events, and promotional reels.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- PREMIUM INDUSTRIES REDESIGN -->
+  <style>
+    .premium-industries {
+      background: #050505;
+      /* Deep premium black */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .premium-industries::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.05) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .premium-industries .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .premium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .premium-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(201, 169, 110, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .premium-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(201, 169, 110, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 169, 110, 0.1);
+    }
+
+    .premium-card:hover::before {
+      opacity: 1;
+    }
+
+    .premium-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(201, 169, 110, 0.1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: #c9a96e;
+      /* Gold color */
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .premium-card:hover .premium-icon {
+      background: #c9a96e;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    .premium-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .premium-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      position: relative;
+    }
+  </style>
+
+
 
   <!-- SERVICES DETAIL -->
   <section class="services-detail section-pad" id="corpServices">
@@ -145,7 +198,7 @@
             <li>Drone aerials (if permitted)</li>
             <li>Delivery within 7 business days</li>
           </ul>
-          <a href="../contact/" class="btn-primary" id="corpEventsBtn">Get a Quote</a>
+          <a href="../book-now/index.html?service=corporate" class="btn-primary" id="corpEventsBtn">Book Now</a>
         </div>
       </div>
       <div class="service-detail-card reverse" id="cs2">
@@ -165,13 +218,248 @@
             <li>Same-day preview images</li>
             <li>Colour corrected finals</li>
           </ul>
-          <a href="../contact/" class="btn-primary" id="corpBrandBtn">Get a Quote</a>
+          <a href="../book-now/index.html?service=corporate" class="btn-primary" id="corpBrandBtn">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- INDUSTRIES -->
+  <section class="section-pad premium-industries" id="industries">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label light">Who We Serve</span>
+        <h2 class="section-title light">Industries We Cover</h2>
+        <p class="section-desc light" style="color: #bbb;">Ahmedabad is a hub of industry — and we've worked with them
+          all</p>
+      </div>
+      <div class="premium-grid">
+        <div class="premium-card reveal-up">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="8" width="16" height="8" rx="4" transform="rotate(-45 12 12)" />
+              <path d="M9.5 9.5l5 5" />
+            </svg>
+          </div>
+          <h4>Pharmaceuticals</h4>
+          <p>Product launches, annual meets, R&amp;D documentation for pharma giants in Gujarat.</p>
+        </div>
+        <div class="premium-card reveal-up delay-1">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 22h20M4 22V8l6-4 6 4v14" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Manufacturing</h4>
+          <p>Factory walkthroughs, process documentation, and industrial photography.</p>
+        </div>
+        <div class="premium-card reveal-up delay-2">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="4" width="20" height="12" rx="2" />
+              <path d="M8 20h8M12 16v4" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h4>IT &amp; Tech</h4>
+          <p>Corporate headshots, team photos, office shoots, and product demo videos.</p>
+        </div>
+        <div class="premium-card reveal-up delay-3">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Retail &amp; FMCG</h4>
+          <p>Product launches, BTL events, brand activations, and promotional coverage.</p>
+        </div>
+        <div class="premium-card reveal-up">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Events &amp; Exhibitions</h4>
+          <p>Trade fairs, Vibrant Gujarat, Garba/Navratri, conferences, and gala dinners.</p>
+        </div>
+        <div class="premium-card reveal-up delay-1">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 22h16M4 2v20M20 2v20M9 22V10h6v12" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Real Estate</h4>
+          <p>Architectural photography, drone aerials, and project documentation.</p>
+        </div>
+        <div class="premium-card reveal-up delay-2">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Education</h4>
+          <p>Convocations, campus events, faculty photos, and institutional branding.</p>
+        </div>
+        <div class="premium-card reveal-up delay-3">
+          <div class="premium-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Hospitality</h4>
+          <p>Hotel photography, food styling, banquet events, and promotional reels.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- SAMPLE WORKS -->
+  <section class="section-pad dark-section" id="corporateGallery">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label light">Our Portfolio</span>
+        <h2 class="section-title light">Sample Works</h2>
+        <p class="section-desc light">Glimpses of our recent corporate events, conferences, and headshot sessions.</p>
+      </div>
+      <div style="padding: 0 1%; width: 100%; max-width: 100%;">
+        <div class="gallery-grid">
+          <div class="gallery-item reveal-scale"
+            data-lightbox="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+              alt="Corporate Conference" loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+          <div class="gallery-item reveal-scale delay-1"
+            data-lightbox="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Stage Event"
+              loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+          <div class="gallery-item reveal-scale delay-2"
+            data-lightbox="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=600&q=80" alt="Corporate Headshot"
+              loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+          <div class="gallery-item reveal-scale"
+            data-lightbox="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80" alt="Tech Event"
+              loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+          <div class="gallery-item reveal-scale delay-1"
+            data-lightbox="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80" alt="Team Meeting"
+              loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+          <div class="gallery-item reveal-scale delay-2"
+            data-lightbox="https://images.unsplash.com/photo-1515169067868-5387ec356754?w=1200&q=90">
+            <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?w=600&q=80" alt="Gala Dinner"
+              loading="lazy" />
+            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="../portfolio/" class="btn-outline">View Full Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <img src="" alt="Fullscreen View" class="lightbox-img" id="lightboxImg" />
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <style>
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-bottom: 3rem;
+      align-items: start;
+    }
+
+    .why-choose-card {
+      background: linear-gradient(145deg, #ffffff 0%, #faf8f2 100%);
+      padding: 2.5rem;
+      border-radius: 12px;
+      border: 1px solid #f0e8d5;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(201, 169, 110, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .why-choose-card:hover {
+      box-shadow: 0 15px 40px rgba(201, 169, 110, 0.15);
+      border-color: #e5d5b5;
+      transform: translateY(-5px);
+    }
+
+    @media (min-width: 992px) {
+      .why-choose-card:nth-child(2) {
+        margin-top: 4rem;
+      }
+    }
+  </style>
+  <section class="section-pad" id="whyChooseUs" style="background: #fdfdfd;">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">The Yash Raj Advantage</span>
+        <h2 class="section-title">Why Choose Us?</h2>
+        <p class="section-desc">Delivering unmatched quality and professionalism for your brand.</p>
+      </div>
+      <div class="why-choose-grid">
+        <div class="why-choose-card reveal-up">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+          <h4 style="color: var(--dark); font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 1rem;">
+            Fast Turnaround</h4>
+          <p style="color: #555; font-size: 0.95rem;">Get your high-resolution, edited images and videos delivered
+            promptly, respecting your strict PR and marketing deadlines.</p>
+        </div>
+        <div class="why-choose-card reveal-up delay-1">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎥</div>
+          <h4 style="color: var(--dark); font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 1rem;">
+            Multi-Camera Setups</h4>
+          <p style="color: #555; font-size: 0.95rem;">From intimate board meetings to 5,000+ attendee conferences, we
+            scale our team and gear to cover every angle flawlessly.</p>
+        </div>
+        <div class="why-choose-card reveal-up delay-2">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+          <h4 style="color: var(--dark); font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 1rem;">
+            Discreet &amp; Professional</h4>
+          <p style="color: #555; font-size: 0.95rem;">Our crew blends into the background, wearing formal attire and
+            acting with utmost professionalism in corporate environments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENQUIRY CTA -->
   <section class="cta-banner" id="corpCta"
     style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80');background-size:cover;background-position:center;">
     <div class="cta-overlay"></div>
@@ -180,7 +468,7 @@
         <span class="section-label light">Custom Packages for Businesses</span>
         <h2 class="cta-title">Elevate Your Brand's<br />Visual Story</h2>
         <p>AMC packages available for regular coverage. Request a free consultation today.</p>
-        <a href="../contact/" class="btn-primary large" id="corpCtaBtn">Request a Quote</a>
+        <a href="../book-now/index.html?service=corporate" class="btn-primary large" id="corpCtaBtn">Book Now</a>
       </div>
     </div>
   </section>

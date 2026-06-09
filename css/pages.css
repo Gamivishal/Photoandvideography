@@ -69,6 +69,7 @@
 .about-story {
   background: var(--light);
 }
+
 .section-desc {
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -155,6 +156,7 @@
 .team-section {
   background: var(--dark-2);
 }
+
 .wedding-film-section {
   position: relative;
   min-height: 100vh;
@@ -348,7 +350,7 @@
   direction: rtl;
 }
 
-.service-detail-card.reverse > * {
+.service-detail-card.reverse>* {
   direction: ltr;
 }
 
@@ -413,8 +415,7 @@
   background: rgba(255, 255, 255, 0.02);
   border-radius: 18px;
   overflow: hidden;
-  transform: perspective(1200px) translateY(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg))
-    rotateY(var(--tilt-y, 0deg)) scale(var(--scale, 1));
+  transform: perspective(1200px) translateY(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--scale, 1));
   transform-style: preserve-3d;
   will-change: transform;
   isolation: isolate;
@@ -424,11 +425,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(201, 169, 110, 0.18),
-    transparent 42%
-  );
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(201, 169, 110, 0.18),
+      transparent 42%);
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -888,6 +887,31 @@
   margin-bottom: 2rem;
 }
 
+/* Custom Checkbox Styling */
+.checkbox-group {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--light);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-sans);
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+  margin: 0;
+}
+
 .form-group label {
   display: block;
   font-size: 0.7rem;
@@ -917,6 +941,11 @@
 .form-control.error {
   border-color: #dc3232;
   box-shadow: 0 0 0 1px rgba(220, 50, 50, 0.15);
+}
+
+.form-control.error:focus {
+  border-color: #dc3232;
+  box-shadow: 0 0 10px rgba(220, 50, 50, 0.25);
 }
 
 .form-control::placeholder {
@@ -1228,8 +1257,21 @@ textarea.form-control {
 }
 
 .drone-video-section {
-  background: var(--dark);
-  padding: 80px 0;
+  position: relative;
+  background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.88)), url('https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+/* Fallback for devices that don't support parallax/fixed attachment nicely */
+@media (hover: none) {
+  .drone-video-section {
+    background-attachment: scroll;
+  }
 }
 
 .drone-reel {
@@ -1250,36 +1292,87 @@ textarea.form-control {
 
 .drone-capabilities {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-top: 4rem;
 }
 
 .drone-cap {
   text-align: center;
-  padding: 2rem 1rem;
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  transition: var(--transition);
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.drone-cap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.drone-cap:hover::before {
+  opacity: 1;
 }
 
 .drone-cap:hover {
+  background: rgba(201, 169, 110, 0.08);
   border-color: rgba(201, 169, 110, 0.4);
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 169, 110, 0.2);
 }
 
 .drone-cap-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.drone-cap:hover .drone-cap-icon {
+  transform: scale(1.2) rotate(5deg);
 }
 
 .drone-cap h4 {
   font-family: var(--font-serif);
   color: var(--light);
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
 }
 
 .drone-cap p {
-  color: var(--grey);
+  color: var(--grey-light);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+  .drone-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .drone-capabilities {
+    grid-template-columns: 1fr;
+  }
+  .drone-video-section {
+    padding: 80px 0;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -1371,9 +1464,7 @@ textarea.form-control {
   margin-bottom: 0.5rem;
 }
 
-.industry-card p {
-  color: var(--grey);
-}
+
 
 /* ---- Pre-Wedding Page ---- */
 .locations-grid {
@@ -1444,107 +1535,4 @@ textarea.form-control {
 
 .faq-item.open .faq-icon {
   transform: rotate(45deg);
-}
-
-.faq-answer {
-  color: var(--grey);
-  margin-top: 1rem;
-  display: none;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-
-.faq-item.open .faq-answer {
-  display: block;
-  animation: fadeInUp 0.3s ease;
-}
-
-/* ---- Responsive Sub-pages ---- */
-@media (max-width: 1024px) {
-  .drone-capabilities {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .industries-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .product-showcase {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .about-grid,
-  .service-detail-card,
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .service-detail-card.reverse {
-    direction: ltr;
-  }
-
-  .team-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .packages-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio-masonry {
-    columns: 2;
-  }
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .locations-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio-masonry {
-    columns: 1;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .locations-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .drone-capabilities {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .industries-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }

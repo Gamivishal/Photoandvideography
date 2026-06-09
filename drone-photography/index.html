@@ -140,7 +140,7 @@
           </p>
           <p>We operate the latest DJI professional drones with 4K/6K camera capabilities, delivering cinema-grade
             footage and ultra-sharp stills from every altitude.</p>
-          <a href="../contact/" class="btn-primary" id="droneEnquireBtn"
+          <a href="../book-now/index.html?drone=yes" class="btn-primary" id="droneEnquireBtn"
             style="margin-top:2rem;display:inline-block;">Add Drone to My Booking</a>
         </div>
       </div>
@@ -205,42 +205,208 @@
   </section>
 
   <!-- USE CASES -->
-  <section class="section-pad dark-section" id="droneUseCases">
+  <style>
+    .drone-shines {
+      background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drone-shines::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: -5%;
+      width: 40%;
+      height: 40%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .drone-shines::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: -5%;
+      width: 35%;
+      height: 35%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.05) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .drone-shines .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .shine-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(8px);
+      cursor: default;
+    }
+
+    .shine-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(201, 169, 110, 0.4));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .shine-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.08);
+    }
+
+    .shine-card:hover::before {
+      opacity: 1;
+    }
+
+    .shine-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .shine-icon.sky {
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+    }
+
+    .shine-icon.gold {
+      background: rgba(201, 169, 110, 0.1);
+      color: #c9a96e;
+    }
+
+    .shine-icon.emerald {
+      background: rgba(52, 211, 153, 0.1);
+      color: #34d399;
+    }
+
+    .shine-icon.rose {
+      background: rgba(251, 113, 133, 0.1);
+      color: #fb7185;
+    }
+
+    .shine-card:hover .shine-icon {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px currentColor;
+    }
+
+    .shine-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .shine-card p {
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @keyframes floatSoft {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .shine-card:nth-child(odd) {
+      animation: floatSoft 6s ease-in-out infinite;
+    }
+
+    .shine-card:nth-child(even) {
+      animation: floatSoft 6s ease-in-out infinite 1.5s;
+    }
+
+    @media (min-width: 768px) {
+      .shine-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+
+  <section class="section-pad drone-shines" id="droneUseCases">
     <div class="container">
       <div class="section-header center">
         <span class="section-label light">Perfect For</span>
         <h2 class="section-title light">Where Drone Shines</h2>
+        <p class="section-desc light">From grand celebrations to commercial ventures — our drones elevate every frame.
+        </p>
       </div>
-      <div class="services-grid-8 services-grid">
-        <div class="service-card" id="du1">
+      <div class="shine-grid">
+        <div class="shine-card reveal-up" id="du1">
+          <div class="shine-icon gold">💒</div>
           <h3>Weddings</h3>
           <p>Aerial views of baraat processions, mandap ceremonies, and venue reveals.</p>
         </div>
-        <div class="service-card" id="du2">
+        <div class="shine-card reveal-up delay-1" id="du2">
+          <div class="shine-icon rose">💑</div>
           <h3>Pre-Wedding</h3>
           <p>Dramatic wide-angle shots at Rann of Kutch, beaches, and heritage locations.</p>
         </div>
-        <div class="service-card" id="du3">
+        <div class="shine-card reveal-up delay-2" id="du3">
+          <div class="shine-icon sky">🏗️</div>
           <h3>Real Estate</h3>
           <p>Property aerials, neighbourhood shots, and construction progress documentation.</p>
         </div>
-        <div class="service-card" id="du4">
+        <div class="shine-card reveal-up delay-3" id="du4">
+          <div class="shine-icon emerald">🎤</div>
           <h3>Corporate Events</h3>
           <p>Conference overview shots, large-scale event documentation from the sky.</p>
         </div>
-        <div class="service-card" id="du5">
+        <div class="shine-card reveal-up" id="du5">
+          <div class="shine-icon sky">🏨</div>
           <h3>Tourism &amp; Hotels</h3>
           <p>Hospitality properties, resort pools, and scenic location promotion films.</p>
         </div>
-        <div class="service-card" id="du6">
+        <div class="shine-card reveal-up delay-1" id="du6">
+          <div class="shine-icon emerald">🌾</div>
           <h3>Agriculture</h3>
           <p>Farm surveys, crop monitoring, and large land-area documentation.</p>
         </div>
-        <div class="service-card" id="du7">
+        <div class="shine-card reveal-up delay-2" id="du7">
+          <div class="shine-icon rose">⚽</div>
           <h3>Sports Events</h3>
           <p>Marathon aerials, stadium shots, outdoor sports coverage from the air.</p>
         </div>
-        <div class="service-card" id="du8">
+        <div class="shine-card reveal-up delay-3" id="du8">
+          <div class="shine-icon gold">🎬</div>
           <h3>Film &amp; Ads</h3>
           <p>Commercial film shoots, ad film aerials, and brand video production.</p>
         </div>
@@ -257,7 +423,7 @@
         <span class="section-label light">Add-On or Standalone Package</span>
         <h2 class="cta-title">Ready to Go<br />Airborne?</h2>
         <p>Drone services available as an add-on to any package or as a standalone booking.</p>
-        <a href="../contact/" class="btn-primary large" id="droneCtaBtn">Book Drone Session</a>
+        <a href="../book-now/index.html?drone=yes" class="btn-primary large" id="droneCtaBtn">Book Drone Session</a>
       </div>
     </div>
   </section>

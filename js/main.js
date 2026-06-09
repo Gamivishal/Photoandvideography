@@ -251,14 +251,19 @@ document.addEventListener('DOMContentLoaded', () => {
         message: 'Please enter a valid email address.'
       },
       {
-        input: document.getElementById('phone'),
-        error: document.getElementById('phoneError'),
-        message: 'Please enter your phone number.'
-      },
-      {
         input: document.getElementById('categorySelect'),
         error: document.getElementById('categoryError'),
         message: 'Please select a category.'
+      },
+      {
+        input: document.getElementById('eventDate'),
+        error: document.getElementById('eventDateError'),
+        message: 'This date is fully booked (max 2 bookings per day). Please choose another date.',
+        customValidate: (val) => {
+          if (!val) return true; // Date is optional on Contact page
+          const fullyBookedDates = ['2026-06-15', '2026-07-01', '2026-12-25'];
+          return !fullyBookedDates.includes(val);
+        }
       }
     ];
 
@@ -272,13 +277,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (formMessage) formMessage.textContent = '';
     };
 
-    const validateField = ({ input, error, message }) => {
+    const validateField = (field) => {
+      const { input, error, message, customValidate } = field;
       if (!input) return true;
       const value = input.value.trim();
       let isValid = Boolean(value);
 
       if (input.type === 'email' && value) {
         isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      if (customValidate) {
+        isValid = customValidate(value);
       }
 
       if (!isValid) {
@@ -294,18 +304,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return true;
     };
 
-    requiredFields.forEach(({ input, error }) => {
+    requiredFields.forEach((field) => {
+      const { input, error } = field;
       if (!input) return;
       input.addEventListener('input', () => {
         if (error && error.textContent) {
-          validateField({ input, error, message: error.textContent });
+          validateField(field);
         }
         if (formMessage && formMessage.classList.contains('error')) {
           formMessage.className = 'form-message';
           formMessage.textContent = '';
         }
       });
-      input.addEventListener('blur', () => validateField({ input, error, message: error?.textContent || 'This field is required.' }));
+      input.addEventListener('blur', () => validateField(field));
+      if (input.tagName === 'SELECT' || input.type === 'date') {
+        input.addEventListener('change', () => validateField(field));
+      }
     });
 
     contactForm.addEventListener('submit', (e) => {
@@ -371,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
   const updatePackageOptions = () => {
+    if (!categorySelect || !packageSelect || !packageWrapper) return;
     const cat = categorySelect.value;
     if (cat && packagesByCategory[cat]) {
       // Clear existing options
