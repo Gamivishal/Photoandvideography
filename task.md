@@ -1,0 +1,21 @@
+# Task List — Form Validation, Date Availability, & Book Now Field Adjustments
+
+- [x] Fix JS load error in `js/main.js` (null checks on `categorySelect`, `packageSelect`, and `packageWrapper`).
+- [x] Add visual error highlight styles for the forms:
+  - [x] Add error focus styles in `css/pages.css`.
+  - [x] Add specific high-priority inline error styles in `contact/index.html` to override default control borders.
+- [x] Implement Date Availability check logic:
+  - [x] Define the mock pre-booked dates with 2+ bookings in validation logic.
+  - [x] Add date validation to `js/main.js` for the Contact Form.
+  - [x] Add date validation to inline script in `book-now/index.html` for the Book Now Form.
+- [x] Clean up Book Now Form in `book-now/index.html`:
+  - [x] Remove the **Partner's Name** input field.
+  - [x] Modify **Your Name** input row to be full-width.
+  - [x] Remove references to partner name in inline JS submission logic.
+  - [x] Mark **Event Date** and **Event City** as required (add asterisks `*` to labels, required attributes).
+  - [x] Implement validation checks for Event Date (compulsory & availability) and Event City (compulsory).
+  - [x] Add specific error div `bookDateError` and `bookCityError` elements.
+- [x] Enforce background date availability check without displaying test date hints in form labels (per user request).
+- [x] Style the Book Now page with a premium photographer background image and standard hero banner to match sub-pages.
+- [x] Verify both forms block submit on validation errors, show message summaries, and highlight input borders in red.
+- [x] Verify no Javascript crashes exist on load across pages.
