@@ -184,19 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(update);
   }
 
-  // ---- TESTIMONIALS SLIDER ----
+  // ---- TESTIMONIALS GRID ----
   const testimonials = document.querySelectorAll('.testimonial-item');
-  let currentTest = 0;
-
-  window.changeTestimonial = function (dir) {
-    if (!testimonials.length) return;
-    testimonials[currentTest].classList.remove('active');
-    currentTest = ((currentTest + dir) % testimonials.length + testimonials.length) % testimonials.length;
-    testimonials[currentTest].classList.add('active');
-  };
-  if (testimonials.length > 1) {
-    setInterval(() => window.changeTestimonial(1), 6000);
-  }
+  testimonials.forEach(testimonial => testimonial.classList.add('active'));
+  window.changeTestimonial = function () { };
 
   // ---- PORTFOLIO FILTER ----
   const filterBtns = document.querySelectorAll('.filter-btn');
