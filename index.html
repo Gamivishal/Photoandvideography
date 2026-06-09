@@ -386,14 +386,14 @@
           emotion, the grandeur, and the intimate moments of a Yash Raj Motion Picture wedding film.</p>
       </div>
 
-      <div class="video-container"
-        style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 1000px; margin: 3rem auto 0; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(204, 166, 119, 0.2); background: #000;">
+      <div id="cinematicContainer" class="video-container" style="transition: transform 0.3s ease-out; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 1000px; margin: 3rem auto 0; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(204, 166, 119, 0.2); background: #000;">
 <video id="cinematicVideo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" controls autoplay>
   <source src="Staticdata/video/CinematicHome.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 <button id="cinematicStop" class="btn-outline" style="margin-top:1rem;">Pause</button>
 <script>
+// Play / Pause button
 document.getElementById('cinematicStop').addEventListener('click', function() {
   var vid = document.getElementById('cinematicVideo');
   if (vid.paused) {
@@ -404,6 +404,19 @@ document.getElementById('cinematicStop').addEventListener('click', function() {
     this.textContent = 'Play';
   }
 });
+
+// Scroll scaling effect using IntersectionObserver
+const cinematicContainer = document.getElementById('cinematicContainer');
+const cinematicObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const ratio = entry.intersectionRatio; // 0 to 1
+    const scale = 0.8 + ratio * 0.4; // 0.8 -> 1.2
+    cinematicContainer.style.transform = `scale(${scale})`;
+  });
+}, {
+  threshold: Array.from({length: 101}, (_, i) => i / 100)
+});
+cinematicObserver.observe(cinematicContainer);
 </script>
       </div>
 
