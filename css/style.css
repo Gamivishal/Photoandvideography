@@ -20,6 +20,8 @@
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-display: "Playfair Display", serif;
   --font-sans: "Montserrat", sans-serif;
+  --copy-size: 1rem;
+  --copy-line-height: 1.8;
   --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.2);
@@ -98,9 +100,20 @@ ul {
 
 .portfolio-intro .section-desc {
   color: var(--light);
-  font-size: 1.1rem;
+  font-size: var(--copy-size);
   max-width: 800px;
   margin: 0 auto 2rem;
+}
+
+.section-desc,
+.intro-para,
+.portfolio-intro .section-desc,
+.service-card p,
+.portfolio-info p,
+.testimonial-text {
+  font-family: var(--font-sans);
+  font-size: var(--copy-size);
+  line-height: var(--copy-line-height);
 }
 
 .portfolio-intro .portfolio-ai-image {
@@ -198,6 +211,7 @@ ul {
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 1;
@@ -249,6 +263,7 @@ ul {
 }
 
 @keyframes waPulse {
+
   0%,
   100% {
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
@@ -360,7 +375,7 @@ ul {
 .logo-sub {
   font-size: 0.52rem;
   letter-spacing: 0.35em;
-  color: var(--grey);
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -374,7 +389,7 @@ ul {
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grey-light);
+  color: #ffffff;
   position: relative;
   transition: var(--transition);
   white-space: nowrap;
@@ -454,14 +469,12 @@ ul {
 
   .footer-social__item--instagram {
     color: #fff;
-    background: radial-gradient(
-      circle at 30% 10%,
-      #feda75 0%,
-      #f58529 25%,
-      #dd2a7b 50%,
-      #962fbf 75%,
-      #4f5bd5 100%
-    );
+    background: radial-gradient(circle at 30% 10%,
+        #feda75 0%,
+        #f58529 25%,
+        #dd2a7b 50%,
+        #962fbf 75%,
+        #4f5bd5 100%);
   }
 
   .footer-social__item--twitter {
@@ -538,10 +551,10 @@ ul {
 }
 
 .nav-toggle span {
-  width: 24px;
-  height: 1px;
-  background: var(--gold);
   display: block;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
   transition: var(--transition);
 }
 
@@ -908,8 +921,6 @@ ul {
   color: #333;
   /* Darker grey for better readability */
   margin-bottom: 1.5rem;
-  font-size: 1rem;
-  line-height: 1.8;
 }
 
 .intro-visuals {
@@ -981,21 +992,54 @@ ul {
 }
 
 .service-card {
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  padding: 3rem 2rem;
-  transition:
-    transform 0.5s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  perspective: 1000px;
   position: relative;
-  overflow: hidden;
-  /* New Solid Premium Card Background */
-  background: linear-gradient(145deg, rgba(40, 35, 30, 0.95) 0%, rgba(20, 18, 15, 0.95) 100%);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  min-height: 320px;
+  /* Transform is handled by JS for the 3D tilt effect on this wrapper */
   transform-style: preserve-3d;
+}
+
+.service-card-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.service-card:hover .service-card-inner {
+  transform: rotateY(180deg);
+}
+
+.service-card-front,
+.service-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  overflow: hidden;
+}
+
+.service-card-front {
+  background: linear-gradient(145deg, rgba(40, 35, 30, 0.95) 0%, rgba(20, 18, 15, 0.95) 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.service-card-back {
+  /* Multi-color gradient requested by user */
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, var(--gold) 100%);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* Spotlight Glow Effect */
@@ -1003,11 +1047,9 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(212, 175, 55, 0.15),
-    transparent 40%
-  );
+  background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+      rgba(212, 175, 55, 0.15),
+      transparent 40%);
   z-index: 0;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -1031,11 +1073,6 @@ ul {
   z-index: 1;
 }
 
-.service-card:hover {
-  border-color: rgba(201, 169, 110, 0.5);
-  /* Transform is now handled by JS for the 3D tilt */
-}
-
 .service-card:hover::before {
   transform: scaleX(1);
 }
@@ -1052,17 +1089,14 @@ ul {
 }
 
 /* New Premium Icon Hover Effect */
-.service-card:hover .service-icon {
-  transform: translateZ(30px) translateY(-10px) scale(1.15);
-  color: var(--gold-light) !important;
-  filter: drop-shadow(0 10px 15px rgba(212, 175, 55, 0.4));
-}
+/* Removed old hover color overrides since the back is a separate face now */
 
 .service-icon {
   width: 48px;
   height: 48px;
   color: var(--gold);
   margin-bottom: 1.5rem;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease, filter 0.4s ease;
 }
 
 .service-card h3 {
@@ -1070,12 +1104,13 @@ ul {
   font-size: 1.3rem;
   color: var(--light);
   margin-bottom: 1rem;
+  transition: color 0.4s ease;
 }
 
 .service-card p {
   color: var(--grey);
-  font-size: 0.9rem;
   margin-bottom: 1.5rem;
+  transition: color 0.4s ease;
 }
 
 .service-link {
@@ -1192,12 +1227,10 @@ ul {
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   transition: left 0.7s ease;
   z-index: 2;
@@ -1256,7 +1289,6 @@ ul {
 }
 
 .portfolio-info p {
-  font-size: 0.75rem;
   color: var(--gold-light);
   letter-spacing: 0.1em;
 }
@@ -1641,7 +1673,7 @@ ul {
 }
 
 .footer-brand p {
-  color: var(--grey);
+  color: #ffffff;
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
@@ -1716,7 +1748,7 @@ ul {
 }
 
 .footer-col ul li a {
-  color: var(--grey);
+  color: #ffffff;
   font-size: 0.9rem;
   transition: var(--transition);
 }
@@ -1726,7 +1758,7 @@ ul {
 }
 
 .footer-contact li {
-  color: var(--grey);
+  color: #ffffff;
   font-size: 0.85rem;
   line-height: 1.6;
   margin-bottom: 0.75rem;
@@ -1734,7 +1766,7 @@ ul {
 }
 
 .footer-contact li a {
-  color: var(--grey);
+  color: #ffffff;
   transition: var(--transition);
 }
 
@@ -1774,7 +1806,7 @@ ul {
 }
 
 .footer-bottom p {
-  color: var(--grey);
+  color: #ffffff;
   font-size: 0.8rem;
 }
 
@@ -1839,6 +1871,7 @@ ul {
 }
 
 @media (max-width: 768px) {
+
   .nav-links,
   .btn-book {
     display: none;
@@ -1915,5 +1948,54 @@ ul {
   .hero-cta {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* ============================================================
+   ZIG-ZAG GALLERY
+   ============================================================ */
+.zig-zag-gallery {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 2rem 0 4rem;
+}
+
+.zig-zag-item {
+  width: calc(25% - 1.5rem);
+  transition: transform 0.4s ease;
+}
+
+.zig-zag-item:nth-child(even) {
+  transform: translateY(40px);
+}
+
+.zig-zag-item img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.zig-zag-item:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(204, 166, 119, 0.4);
+}
+
+@media (max-width: 900px) {
+  .zig-zag-item {
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .zig-zag-item {
+    width: 100%;
+    transform: none !important;
+  }
+  .zig-zag-gallery {
+    padding-bottom: 2rem;
   }
 }

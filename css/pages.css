@@ -90,6 +90,22 @@
   margin-bottom: 1.5rem;
 }
 
+.about-text p,
+.section-text,
+.service-detail-text p,
+.blog-card p,
+.drone-cap p,
+.industry-card p,
+.faq-answer,
+.tc-text,
+.drone-reel-section .section-desc,
+.masonry-info p,
+.location-sub {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
 .about-image {
   height: 600px;
   overflow: hidden;
@@ -288,7 +304,7 @@
   direction: rtl;
 }
 
-.service-detail-card.reverse>* {
+.service-detail-card.reverse > * {
   direction: ltr;
 }
 
@@ -328,7 +344,7 @@
 }
 
 .service-includes li::before {
-  content: '✦';
+  content: "✦";
   color: var(--gold);
   font-size: 0.6rem;
 }
@@ -353,17 +369,22 @@
   background: rgba(255, 255, 255, 0.02);
   border-radius: 18px;
   overflow: hidden;
-  transform: perspective(1200px) translateY(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--scale, 1));
+  transform: perspective(1200px) translateY(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg)) scale(var(--scale, 1));
   transform-style: preserve-3d;
   will-change: transform;
   isolation: isolate;
 }
 
 #packagesMain .package-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201, 169, 110, 0.18), transparent 42%);
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(201, 169, 110, 0.18),
+    transparent 42%
+  );
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -504,7 +525,7 @@
 }
 
 .flip-back.gold {
-  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
+  background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 100%);
   box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
 }
 
@@ -516,18 +537,12 @@
 
 .flip-front.silver .package-name,
 .flip-front.silver .package-price {
-  color: #C0C0C0;
+  color: #c0c0c0;
 }
 
 .flip-back.silver {
-  background: linear-gradient(135deg, #E0E0E0 0%, #A0A0A0 100%);
+  background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%);
   box-shadow: 0 20px 50px rgba(192, 192, 192, 0.3);
-}
-
-border-color: #111;
-color: #111;
-font-weight: 700;
-margin-top: 1rem;
 }
 
 .platinum-flip-back .btn-outline:hover {
@@ -548,7 +563,9 @@ margin-top: 1rem;
   --scale: 0.98;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   border-color: var(--gold-light);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
 }
 
 .package-badge {
@@ -598,7 +615,7 @@ margin-top: 1rem;
 }
 
 .package-features li::before {
-  content: '✓';
+  content: "✓";
   color: var(--gold);
 }
 
@@ -795,7 +812,7 @@ margin-top: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: #25D366;
+  background: #25d366;
   color: #fff;
   padding: 0.85rem 2rem;
   font-size: 0.8rem;
@@ -1047,7 +1064,9 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .video-thumb:hover .play-btn {
@@ -1110,8 +1129,6 @@ textarea.form-control {
 
 .blog-card p {
   color: var(--grey);
-  font-size: 0.88rem;
-  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
@@ -1218,7 +1235,6 @@ textarea.form-control {
 }
 
 .drone-cap p {
-  font-size: 0.85rem;
   color: var(--grey);
 }
 
@@ -1313,7 +1329,6 @@ textarea.form-control {
 
 .industry-card p {
   color: var(--grey);
-  font-size: 0.85rem;
 }
 
 /* ---- Pre-Wedding Page ---- */
@@ -1354,7 +1369,6 @@ textarea.form-control {
 }
 
 .location-sub {
-  font-size: 0.72rem;
   color: var(--gold-light);
   letter-spacing: 0.1em;
 }
@@ -1421,7 +1435,6 @@ textarea.form-control {
 }
 
 @media (max-width: 900px) {
-
   .about-grid,
   .service-detail-card,
   .contact-grid {
