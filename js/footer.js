@@ -45,8 +45,8 @@
         <li>✉️ <a href="mailto:info@yashrajmotionpicture.com">info@yashrajmotionpicture.com</a></li>
       </ul>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Yash Raj Motion Picture. All rights reserved.</p>
+    <div class="footer-bottom" style="text-align: center;">
+      <p style="text-align: center; margin: 0 auto;">© 2025 Yash Raj Motion Picture. All rights reserved.</p>
     </div>
   </div>
 </footer>`;
