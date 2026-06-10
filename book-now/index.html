@@ -18,7 +18,11 @@
     /* Premium Luxury Dark Theme Booking Page Custom Styles */
     .booking-page {
       position: relative;
-      background: #ffffff;
+      background-image: linear-gradient(rgba(13, 10, 9, 0.85), rgba(13, 10, 9, 0.90)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       padding: 100px 0;
       min-height: 80vh;
       display: flex;
@@ -33,18 +37,20 @@
     }
 
     .booking-form-container {
-      background: #ffffff;
+      background: #13100E;
+      /* Darker luxury background matching contact form container */
       padding: 4.5rem 3.5rem;
       border-radius: 8px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(200, 160, 106, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(200, 160, 106, 0.15);
+      /* Gold border accent */
       transition: border-color 0.4s ease, box-shadow 0.4s ease;
       width: 100%;
     }
 
     .booking-form-container:hover {
-      border-color: rgba(200, 160, 106, 0.6);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+      border-color: rgba(200, 160, 106, 0.35);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
     }
 
     .booking-form-container .form-group {
@@ -56,16 +62,16 @@
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #333333;
+      color: rgba(255, 255, 255, 0.65);
       margin-bottom: 0.75rem;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .booking-form-container .form-control {
       width: 100%;
-      background: #fafafa;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      color: #333333;
+      background: #13100E;
+      border: 1px solid rgba(200, 160, 106, 0.15);
+      color: #FFFFFF;
       padding: 1.1rem 1.25rem;
       font-family: var(--font-sans);
       font-size: 0.95rem;
@@ -76,24 +82,24 @@
 
     .booking-form-container .form-control:focus {
       border-color: #C8A06A;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
       box-shadow: 0 0 10px rgba(200, 160, 106, 0.15);
     }
 
     .booking-form-container .form-control::placeholder {
-      color: rgba(0, 0, 0, 0.4);
+      color: rgba(255, 255, 255, 0.3);
     }
 
     .booking-form-container .form-select option {
-      background: #ffffff;
-      color: #333333;
+      background: #13100E;
+      color: #FFFFFF;
     }
 
     .booking-form-container .field-error {
       min-height: 1rem;
       margin-top: 0.4rem;
       font-size: 0.8rem;
-      color: #dc3232;
+      color: #fca5a5;
     }
 
     .booking-form-container .form-control.error {
@@ -108,7 +114,6 @@
 
     .booking-form-container .checkbox-group {
       margin-bottom: 2rem;
-      color: #333333;
     }
 
     @media (max-width: 768px) {
@@ -152,7 +157,7 @@
           <span
             style="font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: #C8A06A; font-weight: 600; display: block; margin-bottom: 0.5rem;">ENQUIRE
             NOW</span>
-          <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: #13100E; margin: 0; font-weight: 500;">
+          <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: #FFFFFF; margin: 0; font-weight: 500;">
             Book Online</h2>
         </div>
         <form id="bookingForm" novalidate>
