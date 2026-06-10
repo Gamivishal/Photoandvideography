@@ -1,35 +1,31 @@
-# Walkthrough — Responsive Styling & Horizontal Scroll Removal
+# Walkthrough — Mobile Navigation Sidebar Drawer & Toggleable Sub-menus
 
-We have successfully established full responsiveness on Mobile, Tablet, and PC, and eliminated the horizontal scroll (left-right slide) issues that affected the pages and navbar.
+We have successfully implemented a sliding drawer menu (sidebar) that appears from the left side on mobile/tablet screens, added expandable/toggleable nested sub-menus for categories, and verified automatic closing behaviors on link clicks.
 
 ## Changes Made
 
-### 1. Disabled Global Horizontal Overflow
+### 1. Left-Side Drawer Layout & Overlay Backdrop Styles
 - **File modified**: [style.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/style.css)
-- **Fix**: Added `overflow-x: hidden;` to the `html` element. This acts as a global safety guard, preventing browsers from rendering any accidental horizontal viewport scroll/slide if components or absolute elements temporarily stretch beyond the screen width.
+- **Fixes**:
+  - Added CSS style rules for `.nav-overlay` (a dark background with `backdrop-filter: blur(4px)` set to `opacity: 0` and `visibility: hidden` by default). When active (`.nav-overlay.active`), it reveals itself smoothly to cover the screen backdrop.
+  - Refactored the `@media (max-width: 1024px)` block for the `.nav-links` element. Instead of an overlay centering menu links, it is positioned fixed on the left: `position: fixed; top: 0; left: -320px; width: 300px; height: 100vh;` with a smooth transition on the `left` property.
+  - When `.nav-links.open` is active, it transitions to `left: 0`, sliding into the viewport from the left side.
+  - Formatted parent items inside the sidebar to align left (`align-items: flex-start`), set line spacing, and formatted the nested `.nav-dropdown` menus to stay collapsed by default (`max-height: 0; overflow: hidden`) and expand smoothly with active toggles (`max-height: 400px; transition: max-height 0.4s ease`).
 
-### 2. Adjusted Navbar Hamburger Breakpoint
-- **File modified**: [style.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/style.css)
-- **Fix**: Shifted the mobile navigation menu responsiveness rules (such as hiding the desktop `.nav-links`, displaying `.nav-toggle` hamburger button, shrinking the `.btn-book` button, and styling the full-screen `.nav-links.open` dropdown) from the `@media (max-width: 768px)` media query to `@media (max-width: 1024px)`.
-- **Outcome**: On tablet screens (e.g., between 768px and 1024px) where the desktop links previously overflowed the width of the screen (creating layout breaks and requiring the user to slide left-to-right to see items), the cleaner hamburger layout will now trigger automatically.
-
-### 3. Enabled Grid Responsiveness Across Sub-pages
-- **File modified**: [pages.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/pages.css)
-- **Fix**: Appended new media query rules at the bottom of the shared pages CSS stylesheet to handle stacking of sub-page grids:
-  - `.packages-grid`, `.industries-grid`, and `.locations-grid` stack to 2 columns on tablet screens (<=1024px) and 1 column on mobile screens.
-  - `.about-grid`, `.team-grid`, `.service-detail-card`, `.product-showcase`, `.testimonials-grid`, `.video-grid`, `.blog-grid`, and `.contact-grid` stack into fewer columns on tablets (<=900px) and a single column on mobile screens (<=600px).
-  - `.form-row` on contact/booking forms now stacks fields cleanly in a single column on screens `<= 600px` without horizontal clipping.
-  - Alternating layout directions (`direction: rtl`) for `.service-detail-card.reverse` are reset to standard flow (`direction: ltr`) on mobile views to ensure images stack correctly.
-
-### 4. Removed Hard-coded Inline Grid Columns
-- **File modified**: [wedding-photography/index.html](file:///c:/Users/Admin/source/repos/Photoandvideography/wedding-photography/index.html)
-- **Fix**: Removed the inline style override `style="grid-template-columns: repeat(3, 1fr);"` on the `.services-grid` container element (around line 150).
-- **Outcome**: This allows the services grid to respect the responsive stylesheet rules (stacking into 1 column on mobile/tablet) instead of forcing a 3-column format on small screens.
+### 2. Backdrop Close, Submenu Toggle, and Auto-Close Logic
+- **File modified**: [main.js](file:///c:/Users/Admin/source/repos/Photoandvideography/js/main.js)
+- **Fixes**:
+  - Automatically create the `.nav-overlay` element inside the `<body>` on DOM load if it doesn't already exist.
+  - Bound click listeners on the hamburger `navToggle` button to toggle `.open` on the sidebar links and `.active` on the overlay.
+  - Bound click listeners on the overlay backdrop to automatically trigger closing of the sliding drawer menu.
+  - Prevented direct page navigation on parent elements with dropdowns (e.g. Services) when clicked on mobile devices, and toggled the nested options list (`.nav-dropdown.active`) and arrow indicator (`▾` / `▴`) instead.
+  - Configured click handlers on menu links to automatically close the drawer menu and clear standard state overlays, except when clicking the expanding parent menus.
 
 ---
 
 ## Verification Summary
 
-1. **Global Scroll**: Tested viewports on PC, tablet, and mobile views; there is zero left-to-right scrolling or unwanted overflow.
-2. **Navbar Layout**: At resolutions `<= 1024px`, the navigation links fold clean into the hamburger toggle menu drawer, keeping the logo and Book Now button positioned without overflow.
-3. **Sub-page grids**: Grid elements on About, Services, Packages, Testimonials, Blog, Contact, and Category pages adapt dynamically to the screen size, stacking in readable configurations without getting squished or clipped.
+1. **Drawer Slide-in**: Resizing the screen down to `<=` 1024px and clicking the three-line toggle slides the menu panel drawer out smoothly from the left side of the screen.
+2. **Backdrop Close**: Clicking outside the drawer (on the dark blurred overlay backdrop) closes the drawer and slides it back off-screen immediately.
+3. **Dropdown Toggle**: Clicking the "Services" link in the drawer does *not* close the menu or navigate immediately; instead, it expands/collapses the sub-menu options with custom arrow transitions.
+4. **Link Auto-Close**: Clicking any inner option (e.g. "Wedding Photography") or standard link (e.g. "About", "Contact") immediately navigates and closes the drawer cleanly.

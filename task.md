@@ -1,20 +1,8 @@
-# Task List — Responsive Mobile, Tablet, PC & Left-Right Scroll Removal
+# Task List — Left Sliding Drawer & Toggle Sub-menus
 
-- [x] Disable global horizontal overflow-x scrolling in `css/style.css` by targeting the `html` element.
-- [x] Shift mobile navigation menu responsiveness breakpoint from `768px` to `1024px` in `css/style.css`.
-- [x] Append media queries in `css/pages.css` to enable clean responsiveness for all sub-page grids:
-  - [x] `.about-grid`
-  - [x] `.team-grid`
-  - [x] `.service-detail-card`
-  - [x] `.packages-grid`
-  - [x] `.industries-grid`
-  - [x] `.locations-grid`
-  - [x] `.product-showcase`
-  - [x] `.testimonials-grid`
-  - [x] `.video-grid`
-  - [x] `.blog-grid`
-  - [x] `.contact-grid`
-  - [x] `.form-row`
-- [x] Remove hard-coded inline grid column overrides in `wedding-photography/index.html`.
-- [x] Verify there is no horizontal scroll/overflow across desktop, tablet, and mobile views.
-- [x] Verify that all grids display correctly and stack appropriately on smaller screens.
+- [x] Add `.nav-overlay` styles and refactor the `@media (max-width: 1024px)` navigation layout in `css/style.css`.
+- [x] Implement dynamic overlay creation, backdrop close, sub-menu toggling, and auto-close navigation logic in `js/main.js`.
+- [x] Verify that clicking the hamburger toggles the left-side slider smoothly.
+- [x] Verify that clicking the backdrop closes the slider.
+- [x] Verify that clicking parent category links toggles nested sub-menus on mobile without closing the drawer.
+- [x] Verify that clicking regular page links or nested links closes the drawer menu automatically.

@@ -56,12 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
   }
 
-  // ---- MOBILE NAV TOGGLE ----
+  // ---- MOBILE NAV TOGGLE (Left Sliding Panel & Sub-menus) ----
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   if (navToggle && navLinks) {
+    // Dynamically create navOverlay backdrop if it doesn't exist
+    let navOverlay = document.getElementById('navOverlay');
+    if (!navOverlay) {
+      navOverlay = document.createElement('div');
+      navOverlay.id = 'navOverlay';
+      navOverlay.className = 'nav-overlay';
+      document.body.appendChild(navOverlay);
+    }
+
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('active');
+      navToggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      document.body.style.overflow = '';
+    };
+
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('active');
       const spans = navToggle.querySelectorAll('span');
       if (navLinks.classList.contains('open')) {
         spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
@@ -73,11 +90,39 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
       }
     });
+
+    // Close when clicking the overlay backdrop
+    navOverlay.addEventListener('click', closeMenu);
+
+    // Dropdown toggle on mobile
+    const dropdownTriggers = navLinks.querySelectorAll('.nav-has-dropdown > a');
+    dropdownTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        if (window.matchMedia('(max-width: 1024px)').matches) {
+          e.preventDefault(); // Stop navigating to services index
+          const parent = trigger.parentElement;
+          const dropdown = parent.querySelector('.nav-dropdown');
+          const arrow = parent.querySelector('.nav-arrow');
+          if (dropdown) {
+            dropdown.classList.toggle('active');
+            if (dropdown.classList.contains('active')) {
+              if (arrow) arrow.textContent = '▴';
+            } else {
+              if (arrow) arrow.textContent = '▾';
+            }
+          }
+        }
+      });
+    });
+
+    // Auto close sidebar when clicking menu links (excluding dropdown toggle triggers)
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-        document.body.style.overflow = '';
+        // If it's a dropdown toggle trigger on mobile/tablet, do not close the menu
+        if (window.matchMedia('(max-width: 1024px)').matches && link.parentElement.classList.contains('nav-has-dropdown')) {
+          return;
+        }
+        closeMenu();
       });
     });
   }
