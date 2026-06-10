@@ -259,25 +259,154 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ---- LIGHTBOX ----
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxClose = document.getElementById('lightboxClose');
-  if (lightbox && lightboxImg) {
-    document.querySelectorAll('[data-lightbox]').forEach(el => {
-      el.addEventListener('click', () => {
-        lightboxImg.src = el.dataset.lightbox;
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    const closeLightbox = () => {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    };
-    lightboxClose && lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  let lightbox = document.getElementById('lightbox');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'lightbox';
+    document.body.appendChild(lightbox);
   }
+  
+  // Re-build inner HTML of lightbox to ensure all elements exist on all pages
+  lightbox.innerHTML = `
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Fullscreen View" class="lightbox-img" id="lightboxImg" style="display: none;" />
+      <video src="" controls class="lightbox-video" id="lightboxVideo" style="display: none;"></video>
+      <div class="lightbox-caption" id="lightboxCaption" style="display: none;">
+        <h4 id="lightboxTitle"></h4>
+        <p id="lightboxDesc"></p>
+      </div>
+    </div>
+  `;
+
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  const openLightbox = (src, type, title, desc) => {
+    // Reset inputs
+    lightboxImg.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxVideo.style.display = 'none';
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+    
+    if (type === 'video') {
+      lightboxVideo.src = src;
+      lightboxVideo.style.display = 'block';
+      lightboxVideo.play().catch(e => console.log('Video autoplay blocked or failed', e));
+    } else {
+      lightboxImg.src = src;
+      lightboxImg.style.display = 'block';
+    }
+
+    if (title || desc) {
+      lightboxTitle.textContent = title || '';
+      lightboxDesc.textContent = desc || '';
+      lightboxCaption.style.display = 'block';
+    } else {
+      lightboxCaption.style.display = 'none';
+    }
+
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+    lightboxImg.src = '';
+  };
+
+  // Bind click event to elements that have data-lightbox
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      // Prevent default click (e.g. if it's an anchor tag)
+      e.preventDefault();
+      e.stopPropagation();
+      const src = el.dataset.lightbox || el.getAttribute('href');
+      const isVideo = src && (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.ogg'));
+      
+      let title = '';
+      let desc = '';
+      const info = el.querySelector('.masonry-info') || el.closest('.masonry-item')?.querySelector('.masonry-info') || el.querySelector('.gallery-overlay') || el.closest('.gallery-item')?.querySelector('.gallery-overlay');
+      if (info) {
+        title = info.querySelector('h4')?.textContent || '';
+        desc = info.querySelector('p')?.textContent || '';
+      } else {
+        title = el.querySelector('img')?.getAttribute('alt') || el.getAttribute('title') || '';
+      }
+
+      openLightbox(src, isVideo ? 'video' : 'image', title, desc);
+    });
+  });
+
+  // Bind click events on portfolio masonry items and gallery items
+  document.querySelectorAll('.masonry-item, .gallery-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      // If they clicked controls on a video, let them interact with video controls
+      if (e.target.tagName === 'VIDEO' && e.target.hasAttribute('controls')) {
+        return;
+      }
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const img = item.querySelector('img');
+      const video = item.querySelector('video');
+      const source = video ? video.querySelector('source') : null;
+      
+      let src = '';
+      let type = 'image';
+      
+      if (video && source) {
+        src = source.src;
+        type = 'video';
+      } else if (img) {
+        src = item.dataset.lightbox || img.src;
+        type = 'image';
+      }
+      
+      if (!src) return;
+      
+      const info = item.querySelector('.masonry-info') || item.querySelector('.gallery-overlay');
+      let title = '';
+      let desc = '';
+      
+      if (info) {
+        title = info.querySelector('h4')?.textContent || '';
+        desc = info.querySelector('p')?.textContent || '';
+      }
+      if (!title && img) {
+        title = img.getAttribute('alt') || '';
+      }
+      
+      openLightbox(src, type, title, desc);
+    });
+  });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeLightbox();
+    });
+  }
+  
+  lightbox.addEventListener('click', e => { 
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content') || e.target.id === 'lightbox') {
+      closeLightbox(); 
+    } 
+  });
+  document.addEventListener('keydown', e => { 
+    if (e.key === 'Escape') closeLightbox(); 
+  });
 
   // ---- CONTACT FORM (static simulation) ----
   const contactForm = document.getElementById('contactForm');

@@ -1,37 +1,36 @@
-# Implementation Plan — Mobile Navigation Sidebar Drawer & Toggleable Sub-menus
+# Implementation Plan — Portfolio Hover & Lightbox Upgrades & Contact Form White Background Styling
 
-This plan outlines the changes to implement a sliding sidebar menu (drawer) from the left side on mobile/tablet devices, add toggleable dropdown sub-menus, and ensure the drawer closes automatically when links are clicked.
+This plan outlines the design and code enhancements to:
+1. Resolve the overlapping hover text on the portfolio page grid items.
+2. Implement a premium, unified fullscreen lightbox for images/videos with glassmorphism captions.
+3. Update the contact page form card to feature a gorgeous white textured background image with highly legible dark/gold contrast styling.
 
 ## Proposed Changes
 
-### 1. Left-Side Sliding Drawer Menu & Toggle Sub-menus
+### 1. Style Corrections & Enhancements
 
-#### [MODIFY] [style.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/style.css)
-- Add styling for the `.nav-overlay` element (dark backdrop backdrop-filter blur) which will cover the rest of the screen when the sidebar is open.
-- Refactor the `@media (max-width: 1024px)` media query:
-  - Position `.nav-links` as a fixed panel on the left side: `position: fixed; top: 0; left: -320px; width: 300px; height: 100vh;` with a smooth transition on the `left` property.
-  - Show `.nav-links` sliding to `left: 0` when the class `.nav-links.open` is active.
-  - Re-style the links to align to the left inside the sidebar drawer.
-  - Hide the `.nav-dropdown` nested list inside `.nav-links` on mobile/tablet views by default, using `max-height: 0` and `overflow: hidden`.
-  - When `.nav-dropdown.active` is toggled, animate it open with a smooth max-height transition.
+#### [MODIFY] [pages.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/pages.css)
+- **Portfolio Hover Text**: Set `.masonry-info` to `opacity: 0` and `pointer-events: none` by default, transitioning to `opacity: 1` on hover.
+- **Lightbox Styling**: Add styling for `.lightbox-content` (flex alignment), `.lightbox-video` (sizing), and `.lightbox-caption` (semi-transparent blur backdrop with gold accents, gold titles, and light gray subtitles).
 
-### 2. JavaScript Toggle and Auto-Close Logic
+#### [MODIFY] [contact/index.html](file:///c:/Users/Admin/source/repos/Photoandvideography/contact/index.html)
+- **Contact Form White Background**:
+  - Set the background of `.contact-form-container` to a high-end white marble background image overlaid with a semi-transparent white gradient (`rgba(255, 255, 255, 0.92)`).
+  - Update headers, form labels, input placeholders, select dropdowns, and button colors within the form card to be dark (e.g. `#13100E`) and gold, creating a beautiful and highly readable contrast.
+
+### 2. JavaScript Unified Lightbox Controller
 
 #### [MODIFY] [main.js](file:///c:/Users/Admin/source/repos/Photoandvideography/js/main.js)
-- Dynamically create a `<div class="nav-overlay" id="navOverlay"></div>` element on the page if it doesn't already exist.
-- When `navToggle` is clicked, toggle the `.open` class on `navLinks` and the `.active` class on the `navOverlay`.
-- Add a click event listener on the `navOverlay` to close the menu when the user clicks outside.
-- Prevent default navigation and toggle the `.active` sub-menu when clicking on parent dropdown links (like "Services") on mobile views (`max-width: 1024px`).
-- Ensure clicking on any standard link (like Home, About, Portfolio, or nested service sub-links) closes the drawer menu and overlay immediately.
+- Upgrade the `#lightbox` element setup. Dynamically create/inject a container that houses both `<img>` and `<video>` tags along with the caption area.
+- Add unified click listeners to support opening any `.masonry-item` (both images and videos on the Portfolio page), `.gallery-item`, or standard `[data-lightbox]` element in the lightbox.
+- Extract caption text (title/subtitle) from `.masonry-info` tags or image `alt` attributes.
+- Ensure video playbacks pause/reset correctly when the lightbox is closed so audio doesn't continue in the background.
 
 ---
 
 ## Verification Plan
 
 ### Manual Verification
-1. Resize screen to tablet/mobile view (< 1024px).
-2. Click the hamburger "three line" toggle button.
-3. Verify that the menu slides in smoothly from the **left** side of the screen, and a dark blurred overlay backdrop appears behind it.
-4. Click on the background overlay backdrop; verify that the drawer menu slides back to the left (closes) and the backdrop disappears.
-5. Open the drawer, click on the **Services** link. Verify that it expands the sub-menu dropdown (Wedding Photography, Pre-Wedding, etc.) showing all options with an arrow change (▾ to ▴), and does *not* close the drawer or navigate away.
-6. Click on a specific service (e.g. "Wedding Photography") or any other main link (e.g. "About"). Verify that the menu closes automatically and navigates to the requested page.
+1. **Portfolio Hover**: Hover over portfolio grid items and check that text overlay appears smoothly.
+2. **Lightbox Captions & Videos**: Click a portfolio image and video. Verify that the media loads in fullscreen, showing the title and location at the bottom. Closing the video must stop the audio immediately.
+3. **Contact Form Style**: Open `/contact/` and verify the form container now has a luxurious white marble textured background. Check that all label text, inputs, and the submit button are highly legible and look clean.

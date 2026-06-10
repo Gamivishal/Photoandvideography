@@ -1,8 +1,9 @@
-# Task List — Left Sliding Drawer & Toggle Sub-menus
+# Task List — Portfolio Hover, Lightbox & Contact Form Enhancements
 
-- [x] Add `.nav-overlay` styles and refactor the `@media (max-width: 1024px)` navigation layout in `css/style.css`.
-- [x] Implement dynamic overlay creation, backdrop close, sub-menu toggling, and auto-close navigation logic in `js/main.js`.
-- [x] Verify that clicking the hamburger toggles the left-side slider smoothly.
-- [x] Verify that clicking the backdrop closes the slider.
-- [x] Verify that clicking parent category links toggles nested sub-menus on mobile without closing the drawer.
-- [x] Verify that clicking regular page links or nested links closes the drawer menu automatically.
+- [x] Modify `css/pages.css` to fix the portfolio hover text transition (opacity and pointer-events).
+- [x] Add new lightbox styling in `css/pages.css` (for content container, fullscreen videos, and elegant gold/gray caption bars).
+- [x] Modify `contact/index.html` inline styles to apply the white marble background image and highly readable dark/gold contrast styling to the form container.
+- [x] Update `js/main.js` lightbox controller to support unified image/video opening, dynamic caption injection, and auto-pausing video audio on close.
+- [x] Verify hover transitions on the portfolio grid.
+- [x] Verify image and video fullscreen popups with captions inside the lightbox.
+- [x] Verify the new white marble textured background on the contact page form card.

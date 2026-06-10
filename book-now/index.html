@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Now – Yash Raj Motion Picture | Ahmedabad</title>
-  <meta name="description"
-    content="Book your photography session with Yash Raj Motion Picture." />
+  <meta name="description" content="Book your photography session with Yash Raj Motion Picture." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -19,11 +18,7 @@
     /* Premium Luxury Dark Theme Booking Page Custom Styles */
     .booking-page {
       position: relative;
-      background-image: linear-gradient(rgba(13, 10, 9, 0.85), rgba(13, 10, 9, 0.90)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background: #ffffff;
       padding: 100px 0;
       min-height: 80vh;
       display: flex;
@@ -38,18 +33,18 @@
     }
 
     .booking-form-container {
-      background: #13100E; /* Darker luxury background matching contact form container */
+      background: #ffffff;
       padding: 4.5rem 3.5rem;
       border-radius: 8px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(200, 160, 106, 0.15); /* Gold border accent */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(200, 160, 106, 0.3);
       transition: border-color 0.4s ease, box-shadow 0.4s ease;
       width: 100%;
     }
 
     .booking-form-container:hover {
-      border-color: rgba(200, 160, 106, 0.35);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border-color: rgba(200, 160, 106, 0.6);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
     }
 
     .booking-form-container .form-group {
@@ -61,16 +56,16 @@
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.65);
+      color: #333333;
       margin-bottom: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .booking-form-container .form-control {
       width: 100%;
-      background: #13100E;
-      border: 1px solid rgba(200, 160, 106, 0.15);
-      color: #FFFFFF;
+      background: #fafafa;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #333333;
       padding: 1.1rem 1.25rem;
       font-family: var(--font-sans);
       font-size: 0.95rem;
@@ -81,24 +76,24 @@
 
     .booking-form-container .form-control:focus {
       border-color: #C8A06A;
-      background: rgba(255, 255, 255, 0.02);
+      background: #ffffff;
       box-shadow: 0 0 10px rgba(200, 160, 106, 0.15);
     }
 
     .booking-form-container .form-control::placeholder {
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(0, 0, 0, 0.4);
     }
 
     .booking-form-container .form-select option {
-      background: #13100E;
-      color: #FFFFFF;
+      background: #ffffff;
+      color: #333333;
     }
 
     .booking-form-container .field-error {
       min-height: 1rem;
       margin-top: 0.4rem;
       font-size: 0.8rem;
-      color: #fca5a5;
+      color: #dc3232;
     }
 
     .booking-form-container .form-control.error {
@@ -113,6 +108,7 @@
 
     .booking-form-container .checkbox-group {
       margin-bottom: 2rem;
+      color: #333333;
     }
 
     @media (max-width: 768px) {
@@ -141,7 +137,7 @@
       style="background-image: url('https://images.unsplash.com/photo-1486916856992-e4db22c8df33?w=1920&q=80')"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-      <span class="section-label">Reserve Your Date</span>
+      <!-- <span class="section-label">Reserve Your Date</span> -->
       <h1>Book Now</h1>
       <p class="breadcrumb"><a href="../">Home</a> / Book Now</p>
     </div>
@@ -153,24 +149,30 @@
 
       <div class="booking-form-container reveal-up">
         <div class="form-header-new" style="margin-bottom: 3rem;">
-          <span style="font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: #C8A06A; font-weight: 600; display: block; margin-bottom: 0.5rem;">ENQUIRE NOW</span>
-          <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: #FFFFFF; margin: 0; font-weight: 500;">Book Online</h2>
+          <span
+            style="font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: #C8A06A; font-weight: 600; display: block; margin-bottom: 0.5rem;">ENQUIRE
+            NOW</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: #13100E; margin: 0; font-weight: 500;">
+            Book Online</h2>
         </div>
         <form id="bookingForm" novalidate>
           <div class="form-group">
             <label for="bookName">Your Name *</label>
-            <input type="text" id="bookName" name="yourName" class="form-control" placeholder="Your full name" required />
+            <input type="text" id="bookName" name="yourName" class="form-control" placeholder="Your full name"
+              required />
             <div class="field-error" id="bookNameError" aria-live="polite"></div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="bookEmail">Email Address *</label>
-              <input type="email" id="bookEmail" name="email" class="form-control" placeholder="your@email.com" required />
+              <input type="email" id="bookEmail" name="email" class="form-control" placeholder="your@email.com"
+                required />
               <div class="field-error" id="bookEmailError" aria-live="polite"></div>
             </div>
             <div class="form-group">
               <label for="bookPhone">WhatsApp / Phone *</label>
-              <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX" required />
+              <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX"
+                required />
               <div class="field-error" id="bookPhoneError" aria-live="polite"></div>
             </div>
           </div>
@@ -182,7 +184,8 @@
             </div>
             <div class="form-group">
               <label for="bookCity">Event City *</label>
-              <input type="text" id="bookCity" name="eventCity" class="form-control" placeholder="e.g. Ahmedabad, Surat" required />
+              <input type="text" id="bookCity" name="eventCity" class="form-control" placeholder="e.g. Ahmedabad, Surat"
+                required />
               <div class="field-error" id="bookCityError" aria-live="polite"></div>
             </div>
           </div>
@@ -255,27 +258,27 @@
 
           const packagesByCategory = {
             'wedding': [
-              {value: 'silver', text: 'Silver'},
-              {value: 'gold', text: 'Gold'},
-              {value: 'platinum', text: 'Platinum'}
+              { value: 'silver', text: 'Silver' },
+              { value: 'gold', text: 'Gold' },
+              { value: 'platinum', text: 'Platinum' }
             ],
             'pre-wedding': [
-              {value: 'basic', text: 'Basic'},
-              {value: 'signature', text: 'Signature'},
-              {value: 'destination', text: 'Destination'}
+              { value: 'basic', text: 'Basic' },
+              { value: 'signature', text: 'Signature' },
+              { value: 'destination', text: 'Destination' }
             ],
             'corporate': [
-              {value: 'starter', text: 'Starter Corporate'},
-              {value: 'business', text: 'Business Corporate'},
-              {value: 'enterprise', text: 'Enterprise Corporate'},
-              {value: 'half-day', text: 'Half Day Event'},
-              {value: 'full-event', text: 'Full Event Coverage'},
-              {value: 'grand-event', text: 'Grand Event Coverage'}
+              { value: 'starter', text: 'Starter Corporate' },
+              { value: 'business', text: 'Business Corporate' },
+              { value: 'enterprise', text: 'Enterprise Corporate' },
+              { value: 'half-day', text: 'Half Day Event' },
+              { value: 'full-event', text: 'Full Event Coverage' },
+              { value: 'grand-event', text: 'Grand Event Coverage' }
             ],
             'product': [
-              {value: 'starter', text: 'Starter Package'},
-              {value: 'catalogue', text: 'Catalogue Package'},
-              {value: 'brand-story', text: 'Brand Story'}
+              { value: 'starter', text: 'Starter Package' },
+              { value: 'catalogue', text: 'Catalogue Package' },
+              { value: 'brand-story', text: 'Brand Story' }
             ]
           };
 
@@ -287,7 +290,7 @@
               defaultOption.value = '';
               defaultOption.textContent = 'Select a package...';
               packageSelect.appendChild(defaultOption);
-              
+
               packagesByCategory[cat].forEach(p => {
                 const opt = document.createElement('option');
                 opt.value = p.value;
@@ -300,7 +303,7 @@
               packageSelect.innerHTML = '<option value="">Select a package...</option>';
             }
           };
-          
+
           // Dynamic drone checkbox label change
           const droneCheckbox = document.getElementById('bookDrone');
           const droneLabelText = document.getElementById('droneLabelText');
@@ -333,7 +336,7 @@
             if (optionExists) {
               categorySelect.value = serviceParam;
             }
-            
+
             // Populate package dropdown
             updatePackageOptions();
 
@@ -365,7 +368,7 @@
           const bookingForm = document.getElementById('bookingForm');
           const formMessage = document.getElementById('bookFormMessage');
           const submitBtn = document.getElementById('bookSubmitBtn');
-          
+
           const requiredFields = [
             {
               input: document.getElementById('bookName'),
@@ -486,7 +489,7 @@
             submitBtn.textContent = 'Submitting...';
 
             const droneCheckbox = document.getElementById('bookDrone');
-            
+
             // Collect form data
             const formData = {
               name: document.getElementById('bookName').value,
@@ -501,7 +504,7 @@
               budget: document.getElementById('bookBudget').value,
               message: document.getElementById('bookMessage').value
             };
-            
+
             console.log('[YRMP] Booking Submitted:', formData);
 
             setTimeout(() => {

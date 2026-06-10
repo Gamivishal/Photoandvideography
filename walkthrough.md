@@ -1,31 +1,35 @@
-# Walkthrough — Mobile Navigation Sidebar Drawer & Toggleable Sub-menus
+# Walkthrough — Portfolio Hover, Lightbox & Contact Form Enhancements
 
-We have successfully implemented a sliding drawer menu (sidebar) that appears from the left side on mobile/tablet screens, added expandable/toggleable nested sub-menus for categories, and verified automatic closing behaviors on link clicks.
+We have successfully resolved the overlapping hover text on the portfolio page masonry items, implemented a premium fullscreen lightbox supporting both images and videos with elegant caption bars, and updated the contact page's background to a clean, solid white color while preserving the luxury dark styling of the form card.
 
 ## Changes Made
 
-### 1. Left-Side Drawer Layout & Overlay Backdrop Styles
-- **File modified**: [style.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/style.css)
+### 1. Portfolio Hover Opacity Correction & Lightbox Styling
+- **File modified**: [pages.css](file:///c:/Users/Admin/source/repos/Photoandvideography/css/pages.css)
 - **Fixes**:
-  - Added CSS style rules for `.nav-overlay` (a dark background with `backdrop-filter: blur(4px)` set to `opacity: 0` and `visibility: hidden` by default). When active (`.nav-overlay.active`), it reveals itself smoothly to cover the screen backdrop.
-  - Refactored the `@media (max-width: 1024px)` block for the `.nav-links` element. Instead of an overlay centering menu links, it is positioned fixed on the left: `position: fixed; top: 0; left: -320px; width: 300px; height: 100vh;` with a smooth transition on the `left` property.
-  - When `.nav-links.open` is active, it transitions to `left: 0`, sliding into the viewport from the left side.
-  - Formatted parent items inside the sidebar to align left (`align-items: flex-start`), set line spacing, and formatted the nested `.nav-dropdown` menus to stay collapsed by default (`max-height: 0; overflow: hidden`) and expand smoothly with active toggles (`max-height: 400px; transition: max-height 0.4s ease`).
+  - Hidden the text overlays (`.masonry-info`) by default using `opacity: 0` and `pointer-events: none` to prevent text from overlapping images before hover.
+  - Made `.masonry-info` fade in smoothly on `.masonry-item:hover` by setting `opacity: 1`.
+  - Added CSS style rules for `.lightbox-content` (flex alignment centering), `.lightbox-video` (constrained fullscreen player), and `.lightbox-caption` (semi-transparent blur backdrop using `rgba(15, 13, 12, 0.85)` and `backdrop-filter: blur(10px)` with a delicate gold border, hosting gold titles and light gray subtitles).
 
-### 2. Backdrop Close, Submenu Toggle, and Auto-Close Logic
+### 2. Contact Page Solid White Background & Form Styling Restore
+- **File modified**: [contact/index.html](file:///c:/Users/Admin/source/repos/Photoandvideography/contact/index.html)
+- **Fixes**:
+  - Removed the background image and overlay from `.contact-page`, setting it to a clean, solid white color (`background: #ffffff`).
+  - Preserved the contact form container's (`.contact-form-container`) original dark luxury style (`#13100E` background, white labels/headers, and gold-accented inputs/primary submit buttons) for high contrast and luxury alignment.
+
+### 3. Unified Lightbox JavaScript Controller
 - **File modified**: [main.js](file:///c:/Users/Admin/source/repos/Photoandvideography/js/main.js)
 - **Fixes**:
-  - Automatically create the `.nav-overlay` element inside the `<body>` on DOM load if it doesn't already exist.
-  - Bound click listeners on the hamburger `navToggle` button to toggle `.open` on the sidebar links and `.active` on the overlay.
-  - Bound click listeners on the overlay backdrop to automatically trigger closing of the sliding drawer menu.
-  - Prevented direct page navigation on parent elements with dropdowns (e.g. Services) when clicked on mobile devices, and toggled the nested options list (`.nav-dropdown.active`) and arrow indicator (`▾` / `▴`) instead.
-  - Configured click handlers on menu links to automatically close the drawer menu and clear standard state overlays, except when clicking the expanding parent menus.
+  - Upgraded the lightbox DOM builder. On load, it dynamically ensures the presence of an `<img>` tag, a `<video>` tag, and a `.lightbox-caption` container.
+  - Implemented a unified `openLightbox` handler that detects if the clicked element is an image or video, loads it fullscreen, and updates/shows the caption bar if text is found in `.masonry-info` or `alt` tags.
+  - Linked the click events of all `.masonry-item` and `.gallery-item` elements to open inside the new lightbox automatically.
+  - Added video-pause and reset logic when the lightbox closes so video audio stops playing immediately.
 
 ---
 
 ## Verification Summary
 
-1. **Drawer Slide-in**: Resizing the screen down to `<=` 1024px and clicking the three-line toggle slides the menu panel drawer out smoothly from the left side of the screen.
-2. **Backdrop Close**: Clicking outside the drawer (on the dark blurred overlay backdrop) closes the drawer and slides it back off-screen immediately.
-3. **Dropdown Toggle**: Clicking the "Services" link in the drawer does *not* close the menu or navigate immediately; instead, it expands/collapses the sub-menu options with custom arrow transitions.
-4. **Link Auto-Close**: Clicking any inner option (e.g. "Wedding Photography") or standard link (e.g. "About", "Contact") immediately navigates and closes the drawer cleanly.
+1. **Portfolio Hover Transition**: Grid items load cleanly with no static overlapping text. Hovering over any item smoothly reveals the dark overlay and caption text.
+2. **Contact Form Styling**: The page features a clean solid white background, while the contact form container stands out as a dark, gold-accented luxury card.
+3. **Image Lightbox**: Clicking on any image in the portfolio or gallery opens a fullscreen lightbox showing the image and a caption bar at the bottom.
+4. **Video Lightbox**: Clicking on any video item (e.g. Cinematic Showcase) opens a fullscreen video player inside the lightbox, playing with control buttons. Closing it pauses the video immediately.
